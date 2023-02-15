@@ -49,8 +49,9 @@ endf " }}}
 fun! shebang#unittest() " {{{ all tests
   let patterns = {
         \ '^#!.*[s]\?bin/sh\>' : 'sh',
-        \ '^#!.*[s]\?bin/bash\>' : 'sh',
+        \ '^#!.*[s]\?bin/bash\>' : 'bash',
         \ '^#!.*\s\+\(ba\|c\|a\|da\|k\|pdk\|mk\|tc\)\?sh\>' : 'sh',
+        \ '^#!.*\s\+bash\>'                                 : 'bash',
         \ '^#!.*\s\+zsh\>'                                  : 'zsh',
         \ '^#!.*\s\+ruby\>'                                 : 'ruby',
         \ '^#!.*[s]\?bin/ruby'                              : 'ruby',
@@ -64,10 +65,10 @@ fun! shebang#unittest() " {{{ all tests
   call s:detect_filetype_test('#!/sbin/sh'            , patterns , 'sh')
   call s:detect_filetype_test('#!/bin/sh'             , patterns , 'sh')
 
-  call s:detect_filetype_test('#!/usr/sbin/bash'      , patterns , 'sh')
-  call s:detect_filetype_test('#!/usr/bin/bash'       , patterns , 'sh')
-  call s:detect_filetype_test('#!/sbin/bash'          , patterns , 'sh')
-  call s:detect_filetype_test('#!/bin/bash'           , patterns , 'sh')
+  call s:detect_filetype_test('#!/usr/sbin/bash'      , patterns , 'bash')
+  call s:detect_filetype_test('#!/usr/bin/bash'       , patterns , 'bash')
+  call s:detect_filetype_test('#!/sbin/bash'          , patterns , 'bash')
+  call s:detect_filetype_test('#!/bin/bash'           , patterns , 'bash')
 
   call s:detect_filetype_test('#!/usr/bin/env zsh'    , patterns , 'zsh')
   call s:detect_filetype_test('#!/usr/bin/env sh'     , patterns , 'sh')
@@ -78,7 +79,7 @@ fun! shebang#unittest() " {{{ all tests
   call s:detect_filetype_test('#!/usr/bin/env pdksh'  , patterns , 'sh')
   call s:detect_filetype_test('#!/usr/bin/env tcsh'   , patterns , 'sh')
   call s:detect_filetype_test('#!/usr/bin/env mksh'   , patterns , 'sh')
-  call s:detect_filetype_test('#!/usr/bin/env bash'   , patterns , 'sh')
+  call s:detect_filetype_test('#!/usr/bin/env bash'   , patterns , 'bash')
   " python
   call s:detect_filetype_test('#!/usr/bin/env python' , patterns , 'python')
   call s:detect_filetype_test('#!/usr/sbin/python'    , patterns , 'python')
